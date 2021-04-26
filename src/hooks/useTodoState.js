@@ -1,8 +1,8 @@
 import { v4 as uuidv4 } from "uuid";
-import useLocalStorage from './useLocalStorage'
+import useLocalStorage from "./useLocalStorage";
 
 export default function useTodoState(initialTodos) {
-  const [todos, setTodos] = useLocalStorage('todos', initialTodos);
+  const [todos, setTodos] = useLocalStorage("todos", initialTodos);
   return {
     todos,
     addTodo: (task) => {

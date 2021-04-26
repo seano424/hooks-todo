@@ -1,6 +1,6 @@
-import './App.css';
-import TodoApp from './components/TodoApp'
-import Nav from './components/Nav'
+import "./App.css";
+import TodoApp from "./components/TodoApp";
+import Nav from "./components/Nav";
 
 function App() {
   return (

@@ -1,14 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import useInput from "../hooks/useInput";
+import { DispatchContext } from "../context/todos.context";
 
 export default function TodoForm(props) {
-  const [task, handleTaskChange, reset] = useInput("");
+  const [value, handleTaskChange, reset] = useInput("");
+  const dispatch = useContext(DispatchContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    props.handleAdd(task)
+    // dispatch({ type: "ADD", task: value });
+    dispatch({ type: "ADD", task: value });
     reset();
-  }
+  };
 
   return (
     <form className="flex items-center pt-5" onSubmit={handleSubmit}>
@@ -17,7 +20,7 @@ export default function TodoForm(props) {
         className="mx-4 pl-2 shadow focus:outline-none rounded py-2 w-64"
         type="text"
         placeholder="enter some new task to do"
-        value={task}
+        value={value}
         onChange={handleTaskChange}
       />
       <button

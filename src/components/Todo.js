@@ -1,17 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useContext, memo } from "react";
 import useInput from "../hooks/useInput";
+import { DispatchContext } from "../context/todos.context";
 
-export default function Todo(props) {
+function Todo({ id, task }) {
+  const dispatch = useContext(DispatchContext);
   const [crossedOut, setcrossedOut] = useState(false);
   const [editing, setEditing] = useState(false);
-  const [value, handleValueChange, reset] = useInput(props.task);
+  const [value, handleValueChange] = useInput(task);
 
   const handleChange = () => {
     setcrossedOut(!crossedOut);
   };
 
   const handleDelete = () => {
-    props.handleDelete(props.id);
+    dispatch({ type: "REMOVE", id: id });
   };
 
   const toggleEdit = () => {
@@ -19,12 +21,12 @@ export default function Todo(props) {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    console.log(value);
-    props.handleEdit(props.id, value)
-    reset()
-    setEditing(!editing)
-  }
+    e.preventDefault();
+    dispatch({ type: "EDIT", id: id, newTask: value });
+    setEditing(!editing);
+  };
+
+  console.log("TODO RERENDER", task);
 
   const deleteClass = "bg-gradient-to-r from-red-400 to-red-500";
   const editClass = `bg-gradient-to-r from-green-400 to-blue-500`;
@@ -50,9 +52,11 @@ export default function Todo(props) {
           />
           <h1
             onClick={toggleEdit}
-            className={`dark:text-white w-64 self-center ${crossedOut ? "line-through" : ""}`}
+            className={`dark:text-white w-64 self-center ${
+              crossedOut ? "line-through" : ""
+            }`}
           >
-            {props.task}
+            {task}
           </h1>
         </>
       )}
@@ -65,3 +69,5 @@ export default function Todo(props) {
     </div>
   );
 }
+
+export default memo(Todo);

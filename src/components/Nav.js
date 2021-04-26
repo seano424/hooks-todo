@@ -5,11 +5,14 @@ export default function Nav() {
   const [colorTheme, setColorTheme] = useDarkMode();
   return (
     <div className="fixed top-0 h-12 flex items-center bg-blue-100 w-full">
-      <span onClick={() =>  setColorTheme(colorTheme)} className="ml-6 w-10 h-10 bg-indigo-500 block flex rounded-full shadow-lg curser-pointer text-white items-center justify-center">
+      <span
+        onClick={() => setColorTheme(colorTheme)}
+        className="ml-6 w-10 h-10 bg-indigo-500 block flex rounded-full shadow-lg curser-pointer text-white items-center justify-center"
+      >
         {colorTheme === "light" ? (
           <svg
             id="Capa_1"
-            enable-background="new 0 0 507.992 507.992"
+            enableBackground="new 0 0 507.992 507.992"
             height="30"
             viewBox="0 0 507.992 507.992"
             width="30"
@@ -27,7 +30,7 @@ export default function Nav() {
         ) : (
           <svg
             id="Capa_1"
-            enable-background="new 0 0 507.992 507.992"
+            enableBackground="new 0 0 507.992 507.992"
             height="30"
             viewBox="0 0 507.992 507.992"
             width="30"
